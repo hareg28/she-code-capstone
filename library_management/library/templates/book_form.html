@@ -1,0 +1,16 @@
+<!-- filepath: c:\Users\admin\OneDrive\Desktop\she_capstone\library_management\library_management\library\templates\library\book_form.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ form.instance.id|yesno:"Update Book,Add Book" }}</title>
+</head>
+<body>
+    
+    <h1>{{ form.instance.id|yesno:"Update Book,Add Book" }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>

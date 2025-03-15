@@ -1,0 +1,16 @@
+<!-- filepath: c:\Users\admin\OneDrive\Desktop\she_capstone\library_management\library_management\library\templates\library\manage_books.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Books</title>
+</head>
+<body>
+    <h1>Manage Books</h1>
+    <ul>
+        {% for book in books %}
+            <li>{{ book.title }} by {{ book.author }} - <a href="{% url 'update_book' book.id %}">Edit</a> | <a href="{% url 'delete_book' book.id %}">Delete</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'create_book' %}">Add New Book</a>
+</body>
+</html>

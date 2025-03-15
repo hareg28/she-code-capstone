@@ -1,0 +1,15 @@
+<!-- filepath: c:\Users\admin\OneDrive\Desktop\she_capstone\library_management\library_management\library\templates\library\book_confirm_delete.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Book</title>
+</head>
+<body>
+    <h1>Are you sure you want to delete "{{ book.title }}"?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, delete</button>
+        <a href="{% url 'manage_books' %}">Cancel</a>
+    </form>
+</body>
+</html>

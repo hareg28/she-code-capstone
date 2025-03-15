@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import user_passes_test
 from django.db.models import Q
 from .models import Book, User  # Import the Book and User models
 from .forms import RegistrationForm  # Import the RegistrationForm
+from .forms import RegistrationForm, BookForm
+from django.shortcuts import render, redirect, get_object_or_404  # Import get_object_or_404
 
 def search_books(request):
     query = request.GET.get('q')  # Get the search query from the URL
@@ -43,6 +45,50 @@ def user_login(request):
             return redirect('home')
     return render(request, 'library/login.html')
 
+@user_passes_test(is_admin)
+def add_book(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_books')
+    else:
+        form = BookForm()
+    return render(request, 'library/book_form.html', {'form': form})
+
+@user_passes_test(is_admin)
+def add_book(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_books')
+    else:
+        form = BookForm()
+    return render(request, 'library/book_form.html', {'form': form})
+
+@user_passes_test(is_admin)
+def update_book(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
+    if request.method == 'POST':
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_books')
+    else:
+        form = BookForm(instance=book)
+    return render(request, 'library/book_form.html', {'form': form})
+
+@user_passes_test(is_admin)
+def delete_book(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
+    if request.method == 'POST':
+        book.delete()
+        
+        
+def view_book(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
+    return render(request, 'library/book_detail.html', {'book': book})
 
 
 

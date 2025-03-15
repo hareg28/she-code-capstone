@@ -1,0 +1,15 @@
+<!-- filepath: c:\Users\admin\OneDrive\Desktop\she_capstone\library_management\library_management\library\templates\library\register.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+</head>
+<body>
+    <h1>Register</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

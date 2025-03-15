@@ -1,0 +1,14 @@
+<!-- filepath: c:\Users\admin\OneDrive\Desktop\she_capstone\library_management\library_management\library\templates\library\book_detail.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ book.title }}</title>
+</head>
+<body>
+    <h1>{{ book.title }}</h1>
+    <p><strong>Author:</strong> {{ book.author }}</p>
+    <p><strong>Genre:</strong> {{ book.genre }}</p>
+    <p><strong>Status:</strong> {{ book.status }}</p>
+    <a href="{% url 'manage_books' %}">Back to Manage Books</a>
+</body>
+</html>
