@@ -80,6 +80,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_URL = '/library/login/'  # Use the URL pattern you already have for login
+
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'

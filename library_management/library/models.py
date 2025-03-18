@@ -36,6 +36,8 @@ class Review(models.Model):
     def __str__(self):
         return f"Review by {self.user.username} for {self.book.title}"
 
+    def get_role_display(self):
+        return dict(self.ROLE_CHOICES).get(self.role, 'Unknown')
 
 class BorrowedBook(models.Model):  
     book = models.ForeignKey(Book, on_delete=models.CASCADE)

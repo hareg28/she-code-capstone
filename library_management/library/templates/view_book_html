@@ -1,0 +1,36 @@
+<!-- filepath: c:\Users\admin\OneDrive\Desktop\she_capstone\library_management\library\templates\view_book.html -->
+{% extends 'base.html' %}
+
+{% block title %}View Book{% endblock %}
+
+{% block content %}
+    <h1>{{ book.title }}</h1>
+    <p><strong>Author:</strong> {{ book.author }}</p>
+    <p><strong>Genre:</strong> {{ book.genre }}</p>
+    <p><strong>Status:</strong> {{ book.get_status_display }}</p>
+
+    <h2>Reviews</h2>
+    <ul>
+        {% for review in book.review_set.all %}
+            <li>
+                <strong>{{ review.user.username }}:</strong> {{ review.rating }}/5
+                <p>{{ review.comment }}</p>
+            </li>
+        {% empty %}
+            <li>No reviews yet.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Borrowing History</h2>
+    <ul>
+        {% for borrowed in book.borrowedbook_set.all %}
+            <li>
+                <strong>{{ borrowed.user.username }}</strong> borrowed on {{ borrowed.borrowed_date }}{% if borrowed.return_date %}, returned on {{ borrowed.return_date }}{% else %}, not returned yet{% endif %}.
+            </li>
+        {% empty %}
+            <li>No borrowing history.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'book_list' %}">Back to Book List</a>
+{% endblock %}
